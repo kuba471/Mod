@@ -1,4 +1,4 @@
-package pl.anamvmnt.client.feature;
+package pl.bettermvmnt.client.feature;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
@@ -14,7 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import pl.anamvmnt.client.AnaMvmntClient;
+import pl.bettermvmnt.client.BetterMvmntClient;
 
 public final class EspRenderer {
     private EspRenderer() {
@@ -25,7 +25,7 @@ public final class EspRenderer {
     }
 
     private static void render(WorldRenderContext context) {
-        if (!AnaMvmntClient.SETTINGS.espEnabled) {
+        if (!BetterMvmntClient.SETTINGS.espEnabled) {
             return;
         }
 
@@ -38,7 +38,7 @@ public final class EspRenderer {
         Camera camera = context.camera();
         Vec3d camPos = camera.getPos();
 
-        int color = AnaMvmntClient.SETTINGS.espColor;
+        int color = BetterMvmntClient.SETTINGS.espColor;
         float r = ((color >> 16) & 255) / 255.0f;
         float g = ((color >> 8) & 255) / 255.0f;
         float b = (color & 255) / 255.0f;
@@ -47,7 +47,7 @@ public final class EspRenderer {
         VertexConsumerProvider.Immediate immediate = client.getBufferBuilders().getEntityVertexConsumers();
         VertexConsumer lines = immediate.getBuffer(RenderLayer.getLines());
 
-        if (AnaMvmntClient.SETTINGS.espThroughWalls) {
+        if (BetterMvmntClient.SETTINGS.espThroughWalls) {
             RenderSystem.disableDepthTest();
         }
 
@@ -57,17 +57,17 @@ public final class EspRenderer {
             }
 
             Box base = entity.getBoundingBox().offset(-camPos.x, -camPos.y, -camPos.z).expand(0.02);
-            Box scaled = scaleBoxFromCenter(base, AnaMvmntClient.SETTINGS.hitboxScale);
+            Box scaled = scaleBoxFromCenter(base, BetterMvmntClient.SETTINGS.hitboxScale);
             VertexRendering.drawBox(matrices, lines, scaled, r, g, b, a);
 
-            if (AnaMvmntClient.SETTINGS.tracersEnabled) {
+            if (BetterMvmntClient.SETTINGS.tracersEnabled) {
                 drawTracer(matrices, lines, camera, entity, camPos, r, g, b, a);
             }
         }
 
         immediate.draw();
 
-        if (AnaMvmntClient.SETTINGS.espThroughWalls) {
+        if (BetterMvmntClient.SETTINGS.espThroughWalls) {
             RenderSystem.enableDepthTest();
         }
     }

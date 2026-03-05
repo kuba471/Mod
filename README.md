@@ -1,4 +1,4 @@
-# AnaMvmnt (Fabric 1.21.4)
+# BetterMvmnt (Fabric 1.21.4)
 
 Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą opcji wizualnych/HUD.
 
@@ -9,7 +9,7 @@ Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą
 - 4 zakładki: **HUD / ESP / ANIM / EXTRA**
 - szybkie przyciski ON/OFF i regulacja pozycji HUD
 - branding w lewym górnym rogu:
-  - `AnaMvmnt`
+  - `BetterMvmnt`
   - `discord.gg/piracik`
 
 ### 2) HUD
@@ -32,7 +32,7 @@ Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą
 - przesuwanie HUD współrzędnych
 
 ### 5) Settings i bezpieczeństwo
-- ustawienia zapisywane do `config/anamvmnt.json`
+- ustawienia zapisywane do `config/bettermvmnt.json`
 - opcja **Safety Reset (disable all)** w GUI:
   - wyłącza moduły
   - resetuje pozycje/kolory
@@ -56,4 +56,4 @@ build/libs/
 ```
 
 ## Sterowanie
-- `Right Shift` — otwarcie GUI AnaMvmnt
+- `Right Shift` — otwarcie GUI BetterMvmnt

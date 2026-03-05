@@ -1,9 +1,9 @@
-package pl.anamvmnt.client.config;
+package pl.bettermvmnt.client.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import pl.anamvmnt.client.ModSettings;
+import pl.bettermvmnt.client.ModSettings;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import java.nio.file.Path;
 
 public final class ConfigManager {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("anamvmnt.json");
+    private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("bettermvmnt.json");
 
     private ConfigManager() {
     }

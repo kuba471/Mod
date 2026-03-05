@@ -1,7 +1,7 @@
-package pl.anamvmnt.client.feature;
+package pl.bettermvmnt.client.feature;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import pl.anamvmnt.client.AnaMvmntClient;
+import pl.bettermvmnt.client.BetterMvmntClient;
 
 public final class AnimationController {
     private AnimationController() {
@@ -15,11 +15,11 @@ public final class AnimationController {
                 return;
             }
 
-            if (AnaMvmntClient.SETTINGS.freezeLegAnimation) {
+            if (BetterMvmntClient.SETTINGS.freezeLegAnimation) {
                 // intentionally lightweight: visual animation modules can read this state
             }
 
-            if (AnaMvmntClient.SETTINGS.swordSwingDownStyle) {
+            if (BetterMvmntClient.SETTINGS.swordSwingDownStyle) {
                 // intentionally lightweight: sword animation modules can read this state
             }
         });

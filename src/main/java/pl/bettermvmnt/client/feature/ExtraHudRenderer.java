@@ -1,4 +1,4 @@
-package pl.anamvmnt.client.feature;
+package pl.bettermvmnt.client.feature;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -6,7 +6,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import pl.anamvmnt.client.AnaMvmntClient;
+import pl.bettermvmnt.client.BetterMvmntClient;
 
 public final class ExtraHudRenderer {
     private ExtraHudRenderer() {
@@ -22,25 +22,25 @@ public final class ExtraHudRenderer {
             return;
         }
 
-        if (AnaMvmntClient.SETTINGS.armorHudEnabled) {
+        if (BetterMvmntClient.SETTINGS.armorHudEnabled) {
             renderArmorHud(context, client);
         }
 
-        if (AnaMvmntClient.SETTINGS.coordsHudEnabled) {
-            int x = AnaMvmntClient.SETTINGS.coordsHudX;
-            int y = AnaMvmntClient.SETTINGS.coordsHudY;
+        if (BetterMvmntClient.SETTINGS.coordsHudEnabled) {
+            int x = BetterMvmntClient.SETTINGS.coordsHudX;
+            int y = BetterMvmntClient.SETTINGS.coordsHudY;
             String coords = String.format("XYZ: %.1f / %.1f / %.1f", client.player.getX(), client.player.getY(), client.player.getZ());
             context.drawTextWithShadow(client.textRenderer, Text.literal(coords), x, y, 0xFFFFFF);
         }
 
-        if (AnaMvmntClient.SETTINGS.fpsHudEnabled) {
+        if (BetterMvmntClient.SETTINGS.fpsHudEnabled) {
             context.drawTextWithShadow(client.textRenderer, Text.literal("FPS: " + client.getCurrentFps()), 8, 30, 0x55FF55);
         }
     }
 
     private static void renderArmorHud(DrawContext context, MinecraftClient client) {
-        int x = AnaMvmntClient.SETTINGS.armorHudX;
-        int y = AnaMvmntClient.SETTINGS.armorHudY;
+        int x = BetterMvmntClient.SETTINGS.armorHudX;
+        int y = BetterMvmntClient.SETTINGS.armorHudY;
 
         int i = 0;
         for (ItemStack stack : client.player.getInventory().armor) {

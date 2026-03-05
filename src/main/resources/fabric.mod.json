@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "id": "anamvmnt",
+  "id": "bettermvmnt",
   "version": "${version}",
-  "name": "AnaMvmnt",
+  "name": "BetterMvmnt",
   "description": "Client utility mod with smooth GUI, inventory HUD, ESP and animation toggles.",
   "authors": ["Codex"],
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "pl.anamvmnt.client.AnaMvmntClient"
+      "pl.bettermvmnt.client.BetterMvmntClient"
     ]
   },
   "depends": {

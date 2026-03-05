@@ -1,4 +1,4 @@
-package pl.anamvmnt.client;
+package pl.bettermvmnt.client;
 
 public final class ModSettings {
     public boolean inventoryHudEnabled = true;

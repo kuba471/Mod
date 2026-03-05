@@ -1,4 +1,4 @@
-package pl.anamvmnt.client.feature;
+package pl.bettermvmnt.client.feature;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
@@ -11,7 +11,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Vec3d;
-import pl.anamvmnt.client.AnaMvmntClient;
+import pl.bettermvmnt.client.BetterMvmntClient;
 
 public final class HatRenderer {
     private HatRenderer() {
@@ -22,7 +22,7 @@ public final class HatRenderer {
     }
 
     private static void render(WorldRenderContext context) {
-        if (!AnaMvmntClient.SETTINGS.chineseHatEnabled) {
+        if (!BetterMvmntClient.SETTINGS.chineseHatEnabled) {
             return;
         }
 
@@ -34,7 +34,7 @@ public final class HatRenderer {
         Camera camera = context.camera();
         Vec3d camPos = camera.getPos();
 
-        int color = AnaMvmntClient.SETTINGS.hatColor;
+        int color = BetterMvmntClient.SETTINGS.hatColor;
         float r = ((color >> 16) & 255) / 255.0f;
         float g = ((color >> 8) & 255) / 255.0f;
         float b = (color & 255) / 255.0f;

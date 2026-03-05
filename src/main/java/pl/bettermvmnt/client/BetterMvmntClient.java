@@ -1,4 +1,4 @@
-package pl.anamvmnt.client;
+package pl.bettermvmnt.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
@@ -7,16 +7,16 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
-import pl.anamvmnt.client.config.ConfigManager;
-import pl.anamvmnt.client.feature.AnimationController;
-import pl.anamvmnt.client.feature.EspRenderer;
-import pl.anamvmnt.client.feature.ExtraHudRenderer;
-import pl.anamvmnt.client.feature.InventoryHudRenderer;
-import pl.anamvmnt.client.feature.HatRenderer;
-import pl.anamvmnt.client.screen.AnaMvmntScreen;
+import pl.bettermvmnt.client.config.ConfigManager;
+import pl.bettermvmnt.client.feature.AnimationController;
+import pl.bettermvmnt.client.feature.EspRenderer;
+import pl.bettermvmnt.client.feature.ExtraHudRenderer;
+import pl.bettermvmnt.client.feature.InventoryHudRenderer;
+import pl.bettermvmnt.client.feature.HatRenderer;
+import pl.bettermvmnt.client.screen.BetterIntroScreen;
 
-public final class AnaMvmntClient implements ClientModInitializer {
-    public static final String MOD_ID = "anamvmnt";
+public final class BetterMvmntClient implements ClientModInitializer {
+    public static final String MOD_ID = "bettermvmnt";
 
     public static ModSettings SETTINGS = new ModSettings();
 
@@ -27,10 +27,10 @@ public final class AnaMvmntClient implements ClientModInitializer {
         SETTINGS = ConfigManager.load();
 
         openGuiKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.anamvmnt.open_gui",
+                "key.bettermvmnt.open_gui",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_RIGHT_SHIFT,
-                "category.anamvmnt.main"
+                "category.bettermvmnt.main"
         ));
 
         InventoryHudRenderer.register();
@@ -41,7 +41,7 @@ public final class AnaMvmntClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openGuiKey.wasPressed()) {
-                client.setScreen(new AnaMvmntScreen());
+                client.setScreen(new BetterIntroScreen());
             }
         });
 
