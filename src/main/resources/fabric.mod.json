@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "bettermvmnt",
+  "version": "${version}",
+  "name": "BetterMvmnt",
+  "description": "Client utility mod with smooth GUI, inventory HUD, ESP and animation toggles.",
+  "authors": ["Codex"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "pl.bettermvmnt.client.BetterMvmntClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "~1.21.4",
+    "fabric-api": "*"
+  }
+}
