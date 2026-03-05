@@ -19,7 +19,11 @@ Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą
 
 ### 3) ESP
 - obrys graczy (hitbox)
+- ESP przez ściany (toggle)
+- tracers do graczy
+- regulacja skali hitboxa
 - zmiana koloru ESP
+- Chinese Hat nad graczem + kolor
 
 ### 4) EXTRA HUD
 - **Armor HUD** (render itemów pancerza)

@@ -18,6 +18,12 @@ public final class ModSettings {
 
     public boolean espEnabled = false;
     public int espColor = 0xFF00FFAA;
+    public boolean espThroughWalls = true;
+    public boolean tracersEnabled = false;
+    public float hitboxScale = 1.00f;
+
+    public boolean chineseHatEnabled = false;
+    public int hatColor = 0xFFFF5555;
 
     public boolean freezeLegAnimation = false;
     public boolean swordSwingDownStyle = false;
@@ -29,7 +35,14 @@ public final class ModSettings {
         armorHudEnabled = false;
         coordsHudEnabled = false;
         fpsHudEnabled = false;
+
         espEnabled = false;
+        espThroughWalls = true;
+        tracersEnabled = false;
+        hitboxScale = 1.00f;
+
+        chineseHatEnabled = false;
+
         freezeLegAnimation = false;
         swordSwingDownStyle = false;
         showBranding = false;
@@ -42,5 +55,6 @@ public final class ModSettings {
         coordsHudX = 10;
         coordsHudY = 110;
         espColor = 0xFF00FFAA;
+        hatColor = 0xFFFF5555;
     }
 }

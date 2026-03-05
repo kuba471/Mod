@@ -26,6 +26,14 @@ public final class AnaMvmntScreen extends Screen {
             0xAA2A1E08
     };
 
+    private static final int[] HAT_COLORS = {
+            0xFFFF5555,
+            0xFFFFAA00,
+            0xFF55FF55,
+            0xFF55AAFF,
+            0xFFFFFFFF
+    };
+
     public AnaMvmntScreen() {
         this(Tab.HUD);
     }
@@ -97,10 +105,35 @@ public final class AnaMvmntScreen extends Screen {
                 () -> "ESP: " + onOff(AnaMvmntClient.SETTINGS.espEnabled),
                 () -> AnaMvmntClient.SETTINGS.espEnabled = !AnaMvmntClient.SETTINGS.espEnabled));
 
+        this.addDrawableChild(toggleButton(centerX, y + 24, 240,
+                () -> "ESP Through Walls: " + onOff(AnaMvmntClient.SETTINGS.espThroughWalls),
+                () -> AnaMvmntClient.SETTINGS.espThroughWalls = !AnaMvmntClient.SETTINGS.espThroughWalls));
+
+        this.addDrawableChild(toggleButton(centerX, y + 48, 240,
+                () -> "Tracers: " + onOff(AnaMvmntClient.SETTINGS.tracersEnabled),
+                () -> AnaMvmntClient.SETTINGS.tracersEnabled = !AnaMvmntClient.SETTINGS.tracersEnabled));
+
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Change ESP Color"), btn -> {
             int index = colorIndex(ESP_COLORS, AnaMvmntClient.SETTINGS.espColor);
             AnaMvmntClient.SETTINGS.espColor = ESP_COLORS[(index + 1) % ESP_COLORS.length];
-        }).dimensions(centerX - 120, y + 24, 240, 20).build());
+        }).dimensions(centerX - 120, y + 72, 240, 20).build());
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Hitbox -"), btn ->
+                AnaMvmntClient.SETTINGS.hitboxScale = Math.max(0.30f, AnaMvmntClient.SETTINGS.hitboxScale - 0.05f))
+                .dimensions(centerX - 120, y + 96, 115, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Hitbox +"), btn ->
+                AnaMvmntClient.SETTINGS.hitboxScale = Math.min(2.50f, AnaMvmntClient.SETTINGS.hitboxScale + 0.05f))
+                .dimensions(centerX + 5, y + 96, 115, 20).build());
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Chinese Hat: " + onOff(AnaMvmntClient.SETTINGS.chineseHatEnabled)), btn -> {
+            AnaMvmntClient.SETTINGS.chineseHatEnabled = !AnaMvmntClient.SETTINGS.chineseHatEnabled;
+            btn.setMessage(Text.literal("Chinese Hat: " + onOff(AnaMvmntClient.SETTINGS.chineseHatEnabled)));
+        }).dimensions(centerX - 120, y + 120, 240, 20).build());
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Change Hat Color"), btn -> {
+            int index = colorIndex(HAT_COLORS, AnaMvmntClient.SETTINGS.hatColor);
+            AnaMvmntClient.SETTINGS.hatColor = HAT_COLORS[(index + 1) % HAT_COLORS.length];
+        }).dimensions(centerX - 120, y + 144, 240, 20).build());
     }
 
     private void initAnimationTab(int centerX, int y) {
@@ -158,6 +191,7 @@ public final class AnaMvmntScreen extends Screen {
         context.fill(this.width / 2 - 160, this.height / 2 - 106, this.width / 2 + 280, this.height / 2 + 120, 0xD0101010);
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("AnaMvmnt - Smooth GUI"), this.width / 2 + 55, this.height / 2 - 84, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("Active tab: " + activeTab.name()), this.width / 2 - 130, this.height / 2 - 68, 0xA0A0FF);
+        context.drawTextWithShadow(this.textRenderer, Text.literal("Hitbox scale: " + String.format("%.2f", AnaMvmntClient.SETTINGS.hitboxScale)), this.width / 2 - 130, this.height / 2 - 54, 0x9CD5FF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("AnaMvmnt"), 8, 8, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("discord.gg/piracik"), 8, 18, 0x9A9A9A);
         super.render(context, mouseX, mouseY, delta);

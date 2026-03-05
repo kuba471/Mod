@@ -12,6 +12,7 @@ import pl.anamvmnt.client.feature.AnimationController;
 import pl.anamvmnt.client.feature.EspRenderer;
 import pl.anamvmnt.client.feature.ExtraHudRenderer;
 import pl.anamvmnt.client.feature.InventoryHudRenderer;
+import pl.anamvmnt.client.feature.HatRenderer;
 import pl.anamvmnt.client.screen.AnaMvmntScreen;
 
 public final class AnaMvmntClient implements ClientModInitializer {
@@ -35,6 +36,7 @@ public final class AnaMvmntClient implements ClientModInitializer {
         InventoryHudRenderer.register();
         ExtraHudRenderer.register();
         EspRenderer.register();
+        HatRenderer.register();
         AnimationController.register();
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
