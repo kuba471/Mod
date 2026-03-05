@@ -79,25 +79,20 @@ public final class BetterMvmntScreen extends Screen {
                 () -> "Branding Left Top: " + onOff(BetterMvmntClient.SETTINGS.showBranding),
                 () -> BetterMvmntClient.SETTINGS.showBranding = !BetterMvmntClient.SETTINGS.showBranding));
 
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Left"), btn -> BetterMvmntClient.SETTINGS.inventoryHudX -= 5)
-                .dimensions(centerX - 120, y + 48, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Right"), btn -> BetterMvmntClient.SETTINGS.inventoryHudX += 5)
-                .dimensions(centerX + 5, y + 48, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Up"), btn -> BetterMvmntClient.SETTINGS.inventoryHudY -= 5)
-                .dimensions(centerX - 120, y + 72, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Down"), btn -> BetterMvmntClient.SETTINGS.inventoryHudY += 5)
-                .dimensions(centerX + 5, y + 72, 115, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Change HUD (Drag & Drop)"), btn ->
+                this.client.setScreen(new HudEditorScreen()))
+                .dimensions(centerX - 120, y + 48, 240, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Change HUD Background Color"), btn -> {
             int index = colorIndex(HUD_BG_COLORS, BetterMvmntClient.SETTINGS.inventoryHudColor);
             BetterMvmntClient.SETTINGS.inventoryHudColor = HUD_BG_COLORS[(index + 1) % HUD_BG_COLORS.length];
-        }).dimensions(centerX - 120, y + 96, 240, 20).build());
+        }).dimensions(centerX - 120, y + 72, 240, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Safety Reset (disable all)"), btn -> {
             BetterMvmntClient.SETTINGS.safetyReset();
             ConfigManager.save(BetterMvmntClient.SETTINGS);
             this.client.setScreen(new BetterMvmntScreen(Tab.HUD));
-        }).dimensions(centerX - 120, y + 120, 240, 20).build());
+        }).dimensions(centerX - 120, y + 96, 240, 20).build());
     }
 
     private void initEspTab(int centerX, int y) {
@@ -134,6 +129,10 @@ public final class BetterMvmntScreen extends Screen {
             int index = colorIndex(HAT_COLORS, BetterMvmntClient.SETTINGS.hatColor);
             BetterMvmntClient.SETTINGS.hatColor = HAT_COLORS[(index + 1) % HAT_COLORS.length];
         }).dimensions(centerX - 120, y + 144, 240, 20).build());
+
+        this.addDrawableChild(toggleButton(centerX, y + 168, 240,
+                () -> "NameTags: " + onOff(BetterMvmntClient.SETTINGS.nametagsEnabled),
+                () -> BetterMvmntClient.SETTINGS.nametagsEnabled = !BetterMvmntClient.SETTINGS.nametagsEnabled));
     }
 
     private void initAnimationTab(int centerX, int y) {
@@ -157,10 +156,13 @@ public final class BetterMvmntScreen extends Screen {
                 () -> "FPS HUD: " + onOff(BetterMvmntClient.SETTINGS.fpsHudEnabled),
                 () -> BetterMvmntClient.SETTINGS.fpsHudEnabled = !BetterMvmntClient.SETTINGS.fpsHudEnabled));
 
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Coords Left"), btn -> BetterMvmntClient.SETTINGS.coordsHudX -= 5)
-                .dimensions(centerX - 120, y + 72, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Coords Right"), btn -> BetterMvmntClient.SETTINGS.coordsHudX += 5)
-                .dimensions(centerX + 5, y + 72, 115, 20).build());
+        this.addDrawableChild(toggleButton(centerX, y + 72, 240,
+                () -> "Freecam: " + onOff(BetterMvmntClient.SETTINGS.freecamEnabled),
+                () -> BetterMvmntClient.SETTINGS.freecamEnabled = !BetterMvmntClient.SETTINGS.freecamEnabled));
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Open HUD Editor"), btn ->
+                this.client.setScreen(new HudEditorScreen()))
+                .dimensions(centerX - 120, y + 96, 240, 20).build());
     }
 
     private ButtonWidget toggleButton(int centerX, int y, int width, LabelSupplier label, ToggleAction action) {
@@ -192,6 +194,7 @@ public final class BetterMvmntScreen extends Screen {
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("BetterMvmnt - Smooth GUI"), this.width / 2 + 55, this.height / 2 - 84, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("Active tab: " + activeTab.name()), this.width / 2 - 130, this.height / 2 - 68, 0xA0A0FF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("Hitbox scale: " + String.format("%.2f", BetterMvmntClient.SETTINGS.hitboxScale)), this.width / 2 - 130, this.height / 2 - 54, 0x9CD5FF);
+        context.drawTextWithShadow(this.textRenderer, Text.literal("Hotkeys: G Tracers | V ESP | F6 Freecam | H HUD Editor"), this.width / 2 - 130, this.height / 2 - 42, 0xC0C0C0);
         context.drawTextWithShadow(this.textRenderer, Text.literal("BetterMvmnt"), 8, 8, 0xFFFFFF);
         context.drawTextWithShadow(this.textRenderer, Text.literal("discord.gg/piracik"), 8, 18, 0x9A9A9A);
         super.render(context, mouseX, mouseY, delta);

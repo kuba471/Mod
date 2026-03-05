@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import pl.bettermvmnt.client.BetterMvmntClient;
@@ -18,7 +19,7 @@ public final class ExtraHudRenderer {
 
     private static void render(DrawContext context, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player == null) {
+        if (client.player == null || client.world == null) {
             return;
         }
 
@@ -34,7 +35,30 @@ public final class ExtraHudRenderer {
         }
 
         if (BetterMvmntClient.SETTINGS.fpsHudEnabled) {
-            context.drawTextWithShadow(client.textRenderer, Text.literal("FPS: " + client.getCurrentFps()), 8, 30, 0x55FF55);
+            context.drawTextWithShadow(
+                    client.textRenderer,
+                    Text.literal("FPS: " + client.getCurrentFps()),
+                    BetterMvmntClient.SETTINGS.fpsHudX,
+                    BetterMvmntClient.SETTINGS.fpsHudY,
+                    0x55FF55
+            );
+        }
+
+        if (BetterMvmntClient.SETTINGS.nametagsEnabled) {
+            int y = 8;
+            context.drawTextWithShadow(client.textRenderer, Text.literal("Nametags"), 8, y, 0xFFC6FF);
+            y += 10;
+            for (PlayerEntity p : client.world.getPlayers()) {
+                if (p == client.player) {
+                    continue;
+                }
+                int dist = (int) client.player.distanceTo(p);
+                context.drawTextWithShadow(client.textRenderer, Text.literal(p.getName().getString() + " [" + dist + "m]"), 8, y, 0xFFFFFF);
+                y += 10;
+                if (y > 100) {
+                    break;
+                }
+            }
         }
     }
 
