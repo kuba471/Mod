@@ -1,33 +1,51 @@
 # AnaMvmnt (Fabric 1.21.4)
 
-Client mod pod **Minecraft 1.21.4**.
+Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą opcji wizualnych/HUD.
 
-## Funkcje
-- GUI pod **Right Shift**
-- Zakładki: **Hud / ESP / Animation**
-- Inventory HUD (pełny ekwipunek 3x9) z przesuwaniem i zmianą koloru tła
-- ESP graczy (obrys hitboxa) z wyborem koloru
-- Przełączniki animacji: `Freeze Legs` i `Sword Swing Down`
-- Branding w lewym górnym rogu:
+## Najważniejsze funkcje
+
+### 1) GUI
+- otwieranie pod **Right Shift**
+- 4 zakładki: **HUD / ESP / ANIM / EXTRA**
+- szybkie przyciski ON/OFF i regulacja pozycji HUD
+- branding w lewym górnym rogu:
   - `AnaMvmnt`
   - `discord.gg/piracik`
-- **Safety Reset** (w GUI): szybkie wyłączenie wszystkich modułów i reset ustawień
 
-## Ważne
-Projekt **nie zawiera** funkcji ukrywania śladów, auto-usuwania plików ani mechanizmów omijania wykrycia.
+### 2) HUD
+- **Inventory HUD** (całe 3x9 inventory)
+- zmiana tła inventory HUD (kilka kolorów)
+- przesuwanie inventory HUD w osi X/Y
+
+### 3) ESP
+- obrys graczy (hitbox)
+- zmiana koloru ESP
+
+### 4) EXTRA HUD
+- **Armor HUD** (render itemów pancerza)
+- **Coords HUD** (pozycja XYZ)
+- **FPS HUD**
+- przesuwanie HUD współrzędnych
+
+### 5) Settings i bezpieczeństwo
+- ustawienia zapisywane do `config/anamvmnt.json`
+- opcja **Safety Reset (disable all)** w GUI:
+  - wyłącza moduły
+  - resetuje pozycje/kolory
+- brak funkcji ukrywania śladów, usuwania plików, omijania wykrycia
 
 ## Wymagania
 - Java 21+
 - Fabric Loader dla 1.21.4
 - Fabric API
-- Gradle `9.4.0` (ustawione w wrapper properties)
+- Gradle `9.4.0` (wrapper properties)
 
 ## Build
 ```bash
 gradle build
 ```
 
-Po udanym buildzie plik `.jar` będzie w:
+Po udanym buildzie plik `.jar` znajdziesz w:
 
 ```text
 build/libs/
