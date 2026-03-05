@@ -1,61 +1,52 @@
 # BetterMvmnt (Fabric 1.21.4)
 
-Rozbudowany client mod pod **Minecraft 1.21.4** z GUI pod Shift i dużą liczbą opcji wizualnych/HUD.
+Rozbudowany client mod pod **Minecraft 1.21.4** z smooth GUI, intro screen, HUD edytorem i bardzo dużą liczbą modułów.
 
-## Najważniejsze funkcje
+## Co dostałeś (duży update)
 
-### 1) GUI + Intro
-- otwieranie pod **Right Shift**
-- intro/loading screen z napisem `BetterMvmnt` + `discord.gg/piracik`
-- 4 zakładki: **HUD / ESP / ANIM / EXTRA**
-- szybkie przełączniki ON/OFF
+### GUI / UX
+- smooth intro/loading screen
+- nowy większy panel **BetterMvmnt - Ultra Smooth GUI**
+- zakładki: `HUD / ESP / ANIMATION / EXTRA / PLUS`
+- szybkie przełączanie i zapis ustawień
 
-### 2) HUD i pełna edycja położenia
-- **Inventory HUD** (całe 3x9 inventory)
-- **Armor HUD**, **Coords HUD**, **FPS HUD**
-- **NameTags list** (gracze + dystans)
-- osobny ekran **Change HUD (Drag & Drop)**
-  - przeciągasz elementy myszką
-  - bez klikania strzałkami
-  - działa szybko i płynnie
+### HUD + personalizacja
+- Inventory/Armor/Coords/FPS HUD
+- NameTags (lista graczy + dystans)
+- osobny **HUD Editor (drag & drop)**
+- ustawianie pozycji elementów myszką
+- kolor HUD i ESP ustawiany dynamicznie (kanały RGB)
 
-### 3) ESP / Combat Visual
-- obrys graczy (hitbox)
-- **ESP przez ściany** (toggle)
-- **tracers do graczy** (toggle + keybind)
-- regulacja skali hitboxa
-- zmiana koloru ESP
-- **Chinese Hat** nad graczem + kolor
+### ESP / Visual
+- ESP boxy
+- ESP przez ściany
+- tracers
+- hitbox scale
+- Chinese Hat
+- NameTags
 
-### 4) Ruch i utility
-- **Freecam** (toggle w GUI + keybind)
-- przełączniki animacji: `Freeze Legs` i `Sword Swing Down`
+### Keybindy
+- `Right Shift` — GUI
+- `H` — HUD Editor
+- `G` — tracers
+- `V` — ESP
+- `F6` — freecam
 
-### 5) Keybindy
-- `Right Shift` — open GUI
-- `H` — open HUD editor
-- `G` — toggle tracers
-- `V` — toggle ESP
-- `F6` — toggle freecam
-
-### 6) Settings i bezpieczeństwo
-- ustawienia zapisywane do `config/bettermvmnt.json`
-- opcja **Safety Reset (disable all)** w GUI:
-  - wyłącza moduły
-  - resetuje pozycje/kolory
-
-## Wymagania
-- Java 21+
-- Fabric Loader dla 1.21.4
-- Fabric API
-- Gradle `9.4.0` (wrapper properties)
+### 30+ dodatkowych modułów/toggle (PLUS)
+- Sprint, AutoJump, Speed, LongJump, HighJump, LowGravity
+- Step, SafeWalk, NoSlow, Velocity, AntiKnockback
+- FastPlace, FastBreak, Reach, TriggerBot, AimAssist
+- AutoTotem, AutoArmor, ChestStealer, Scaffold, Blink, Timer
+- FullBright, Xray, ItemESP, PlayerRadar, Crosshair
+- DamageParticles, Weather, TimeChanger
+- NoPush, NoBlockParticles, Freecam
 
 ## Build
 ```bash
 gradle build
 ```
 
-Po udanym buildzie plik `.jar` znajdziesz w:
+Plik `.jar` po buildzie:
 
 ```text
 build/libs/
