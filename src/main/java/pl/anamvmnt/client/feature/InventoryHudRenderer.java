@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
 import pl.anamvmnt.client.AnaMvmntClient;
 
 public final class InventoryHudRenderer {
@@ -16,12 +17,17 @@ public final class InventoryHudRenderer {
     }
 
     private static void render(DrawContext context, float tickDelta) {
-        if (!AnaMvmntClient.SETTINGS.inventoryHudEnabled) {
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client.player == null) {
             return;
         }
 
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player == null) {
+        if (AnaMvmntClient.SETTINGS.showBranding) {
+            context.drawTextWithShadow(client.textRenderer, Text.literal("AnaMvmnt"), 8, 8, 0xFFFFFF);
+            context.drawTextWithShadow(client.textRenderer, Text.literal("discord.gg/piracik"), 8, 18, 0xA0A0A0);
+        }
+
+        if (!AnaMvmntClient.SETTINGS.inventoryHudEnabled) {
             return;
         }
 

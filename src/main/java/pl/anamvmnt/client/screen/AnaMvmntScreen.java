@@ -9,12 +9,20 @@ import pl.anamvmnt.client.AnaMvmntClient;
 public final class AnaMvmntScreen extends Screen {
     private final Tab activeTab;
 
-    private static final int[] COLORS = {
+    private static final int[] ESP_COLORS = {
             0xFF00FFAA,
             0xFFFF6666,
             0xFF66AAFF,
             0xFFFFFF66,
             0xFFFFFFFF
+    };
+
+    private static final int[] HUD_BG_COLORS = {
+            0xAA202020,
+            0xAA0A0F1C,
+            0xAA1E0A0A,
+            0xAA113011,
+            0xAA2A1E08
     };
 
     public AnaMvmntScreen() {
@@ -29,10 +37,10 @@ public final class AnaMvmntScreen extends Screen {
     @Override
     protected void init() {
         int centerX = this.width / 2;
-        int baseY = this.height / 2 - 90;
+        int baseY = this.height / 2 - 92;
 
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("AnaMvmnt"), btn -> {
-        }).dimensions(centerX - 130, baseY, 120, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("AnaMvmnt"), btn -> { })
+                .dimensions(centerX - 140, baseY, 130, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Hud"), btn -> this.client.setScreen(new AnaMvmntScreen(Tab.HUD)))
                 .dimensions(centerX - 5, baseY, 60, 20).build());
@@ -59,14 +67,27 @@ public final class AnaMvmntScreen extends Screen {
                         })
                 .dimensions(centerX - 120, y, 240, 20).build());
 
+        this.addDrawableChild(ButtonWidget.builder(
+                        Text.literal("Branding Left Top: " + onOff(AnaMvmntClient.SETTINGS.showBranding)),
+                        btn -> {
+                            AnaMvmntClient.SETTINGS.showBranding = !AnaMvmntClient.SETTINGS.showBranding;
+                            btn.setMessage(Text.literal("Branding Left Top: " + onOff(AnaMvmntClient.SETTINGS.showBranding)));
+                        })
+                .dimensions(centerX - 120, y + 24, 240, 20).build());
+
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Left"), btn -> AnaMvmntClient.SETTINGS.inventoryHudX -= 5)
-                .dimensions(centerX - 120, y + 24, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Right"), btn -> AnaMvmntClient.SETTINGS.inventoryHudX += 5)
-                .dimensions(centerX + 5, y + 24, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Up"), btn -> AnaMvmntClient.SETTINGS.inventoryHudY -= 5)
                 .dimensions(centerX - 120, y + 48, 115, 20).build());
-        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Down"), btn -> AnaMvmntClient.SETTINGS.inventoryHudY += 5)
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Right"), btn -> AnaMvmntClient.SETTINGS.inventoryHudX += 5)
                 .dimensions(centerX + 5, y + 48, 115, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Up"), btn -> AnaMvmntClient.SETTINGS.inventoryHudY -= 5)
+                .dimensions(centerX - 120, y + 72, 115, 20).build());
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Move HUD Down"), btn -> AnaMvmntClient.SETTINGS.inventoryHudY += 5)
+                .dimensions(centerX + 5, y + 72, 115, 20).build());
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Change HUD Background Color"), btn -> {
+            int index = colorIndex(HUD_BG_COLORS, AnaMvmntClient.SETTINGS.inventoryHudColor);
+            AnaMvmntClient.SETTINGS.inventoryHudColor = HUD_BG_COLORS[(index + 1) % HUD_BG_COLORS.length];
+        }).dimensions(centerX - 120, y + 96, 240, 20).build());
     }
 
     private void initEspTab(int centerX, int y) {
@@ -79,14 +100,8 @@ public final class AnaMvmntScreen extends Screen {
                 .dimensions(centerX - 120, y, 240, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.literal("Change ESP Color"), btn -> {
-            int index = 0;
-            for (int i = 0; i < COLORS.length; i++) {
-                if (COLORS[i] == AnaMvmntClient.SETTINGS.espColor) {
-                    index = i;
-                    break;
-                }
-            }
-            AnaMvmntClient.SETTINGS.espColor = COLORS[(index + 1) % COLORS.length];
+            int index = colorIndex(ESP_COLORS, AnaMvmntClient.SETTINGS.espColor);
+            AnaMvmntClient.SETTINGS.espColor = ESP_COLORS[(index + 1) % ESP_COLORS.length];
         }).dimensions(centerX - 120, y + 24, 240, 20).build());
     }
 
@@ -120,10 +135,24 @@ public final class AnaMvmntScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context, mouseX, mouseY, delta);
-        context.fill(this.width / 2 - 150, this.height / 2 - 100, this.width / 2 + 230, this.height / 2 + 110, 0xD0101010);
-        context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("AnaMvmnt - Smooth GUI"), this.width / 2 + 40, this.height / 2 - 80, 0xFFFFFF);
-        context.drawTextWithShadow(this.textRenderer, Text.literal("Active tab: " + activeTab.name()), this.width / 2 - 120, this.height / 2 - 64, 0xA0A0FF);
+
+        context.fill(this.width / 2 - 160, this.height / 2 - 106, this.width / 2 + 230, this.height / 2 + 120, 0xD0101010);
+        context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("AnaMvmnt - Smooth GUI"), this.width / 2 + 35, this.height / 2 - 84, 0xFFFFFF);
+        context.drawTextWithShadow(this.textRenderer, Text.literal("Active tab: " + activeTab.name()), this.width / 2 - 130, this.height / 2 - 68, 0xA0A0FF);
+
+        context.drawTextWithShadow(this.textRenderer, Text.literal("AnaMvmnt"), 8, 8, 0xFFFFFF);
+        context.drawTextWithShadow(this.textRenderer, Text.literal("discord.gg/piracik"), 8, 18, 0x9A9A9A);
+
         super.render(context, mouseX, mouseY, delta);
+    }
+
+    private static int colorIndex(int[] palette, int color) {
+        for (int i = 0; i < palette.length; i++) {
+            if (palette[i] == color) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     private static String onOff(boolean value) {

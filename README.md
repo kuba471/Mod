@@ -1,21 +1,33 @@
-# AnaMvmnt (1.21.4)
+# AnaMvmnt (Fabric 1.21.4)
 
-Client-side Fabric mod skeleton for Minecraft 1.21.4 with:
-- Shift-opened GUI (Right Shift)
-- Inventory HUD overlay with position controls
-- Player ESP toggle with color cycling
-- Animation settings toggles (freeze legs / sword swing style hook)
+Mega client mod pod **Minecraft 1.21.4**.
+
+## Co jest zrobione
+- GUI otwierane pod **Right Shift**
+- Zakładki: **Hud / ESP / Animation**
+- Inventory HUD (pełny ekwipunek 3x9) z przesuwaniem i zmianą koloru tła
+- ESP graczy przez ściany (obrys hitboxa) z wyborem koloru
+- Ustawienia animacji (freeze legs / sword swing down) jako gotowe przełączniki pod dalszą rozbudowę
+- Branding w lewym górnym rogu:
+  - `AnaMvmnt`
+  - `discord.gg/piracik`
+
+## Wymagania
+- Java 21+
+- Fabric Loader dla 1.21.4
+- Fabric API
+- Projekt ustawiony pod Gradle `9.4.0` (wrapper properties)
 
 ## Build
-
 ```bash
-./gradlew build
+gradle build
 ```
 
-## Controls
+Po udanym buildzie plik `.jar` będzie w:
 
-- `Right Shift` — open AnaMvmnt GUI
+```text
+build/libs/
+```
 
-## Notes
-
-This is a clean base implementation. The animation module is prepared as toggle state/hooks so you can extend with mixins for advanced model transforms.
+## Sterowanie
+- `Right Shift` — otwarcie GUI AnaMvmnt

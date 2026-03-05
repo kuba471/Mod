@@ -3,13 +3,16 @@ package pl.anamvmnt.client.feature;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.Camera;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import org.joml.Matrix4f;
 import pl.anamvmnt.client.AnaMvmntClient;
 
 public final class EspRenderer {
@@ -48,8 +51,7 @@ public final class EspRenderer {
                 continue;
             }
 
-            Box box = entity.getBoundingBox().offset(-camPos.x, -camPos.y, -camPos.z);
-            Matrix4f matrix = matrices.peek().getPositionMatrix();
+            Box box = entity.getBoundingBox().offset(-camPos.x, -camPos.y, -camPos.z).expand(0.02);
             WorldRenderer.drawBox(matrices, lines, box, r, g, b, a);
         }
 
