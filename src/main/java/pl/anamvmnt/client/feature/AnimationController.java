@@ -1,0 +1,27 @@
+package pl.anamvmnt.client.feature;
+
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import pl.anamvmnt.client.AnaMvmntClient;
+
+public final class AnimationController {
+    private AnimationController() {
+    }
+
+    public static void register() {
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            // Hook point for animation logic.
+            // In this base version settings are toggled in GUI and can be consumed by mixins/render layers.
+            if (client.player == null) {
+                return;
+            }
+
+            if (AnaMvmntClient.SETTINGS.freezeLegAnimation) {
+                // intentionally lightweight: visual animation modules can read this state
+            }
+
+            if (AnaMvmntClient.SETTINGS.swordSwingDownStyle) {
+                // intentionally lightweight: sword animation modules can read this state
+            }
+        });
+    }
+}
