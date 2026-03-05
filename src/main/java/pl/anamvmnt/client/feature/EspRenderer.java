@@ -7,7 +7,7 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.WorldRenderer;
+import net.minecraft.client.render.VertexRendering;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,7 +52,7 @@ public final class EspRenderer {
             }
 
             Box box = entity.getBoundingBox().offset(-camPos.x, -camPos.y, -camPos.z).expand(0.02);
-            WorldRenderer.drawBox(matrices, lines, box, r, g, b, a);
+            VertexRendering.drawBox(matrices, lines, box, r, g, b, a);
         }
 
         immediate.draw();

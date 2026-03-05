@@ -88,6 +88,11 @@ public final class AnaMvmntScreen extends Screen {
             int index = colorIndex(HUD_BG_COLORS, AnaMvmntClient.SETTINGS.inventoryHudColor);
             AnaMvmntClient.SETTINGS.inventoryHudColor = HUD_BG_COLORS[(index + 1) % HUD_BG_COLORS.length];
         }).dimensions(centerX - 120, y + 96, 240, 20).build());
+
+        this.addDrawableChild(ButtonWidget.builder(Text.literal("Safety Reset (disable all)"), btn -> {
+            AnaMvmntClient.SETTINGS.safetyReset();
+            this.client.setScreen(new AnaMvmntScreen(Tab.HUD));
+        }).dimensions(centerX - 120, y + 120, 240, 20).build());
     }
 
     private void initEspTab(int centerX, int y) {

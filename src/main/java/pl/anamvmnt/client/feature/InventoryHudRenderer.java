@@ -3,6 +3,7 @@ package pl.anamvmnt.client.feature;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -13,10 +14,10 @@ public final class InventoryHudRenderer {
     }
 
     public static void register() {
-        HudRenderCallback.EVENT.register(InventoryHudRenderer::render);
+        HudRenderCallback.EVENT.register((context, tickCounter) -> render(context, tickCounter));
     }
 
-    private static void render(DrawContext context, float tickDelta) {
+    private static void render(DrawContext context, RenderTickCounter tickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null) {
             return;

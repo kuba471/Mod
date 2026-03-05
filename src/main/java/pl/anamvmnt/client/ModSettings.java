@@ -13,4 +13,17 @@ public final class ModSettings {
     public boolean swordSwingDownStyle = false;
 
     public boolean showBranding = true;
+
+    public void safetyReset() {
+        inventoryHudEnabled = false;
+        espEnabled = false;
+        freezeLegAnimation = false;
+        swordSwingDownStyle = false;
+        showBranding = false;
+
+        inventoryHudX = 10;
+        inventoryHudY = 28;
+        inventoryHudColor = 0xAA202020;
+        espColor = 0xFF00FFAA;
+    }
 }
